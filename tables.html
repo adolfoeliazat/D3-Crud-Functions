@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>D3 + Bootstrap + Angular</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script src="D3/angular-d3.js"></script>
+		<script src="js/angular.js"></script>
+		<script src="js/d3.js"></script>
+		<script src="js/nv.d3.js"></script>
+		<script src="dist/angularjs-nvd3-directives.js"></script>
+		<link href="css/styles.css" rel="stylesheet">
+
+	</head>
+
+	<body ng-app="app">
+		<div></div>
+		<div ng-controller="mainCtrl">
+			<header>
+				<h1 class="label label-danger"> Reading and Updating Tables</h1>
+			</header>
+			<nav class ="navbar navbar-inverse">
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="#">Home</a>
+					</li>
+
+				</ul>
+			</nav>
+
+			<div id ="midDiv">
+
+				<table class="table table-bordered table-striped table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Number</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat ="array in tableData" ng-click="">
+							<td >{{array.id}}</td>
+							<td>{{array.name}}</td>
+							<td>{{array.last}}</td>
+							<td>{{array.number}}</td>
+							<td>
+							<button class = "btn btn-sm btn-primary" ng-click = "select1(array)" >
+								Select
+							</button></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<div class="row">
+					<div class="col-md-3">
+						<input ng-model ="name" class="form-control" placeholder="First Name" />
+					</div>
+					<div class="col-md-3">
+						<input ng-model ="last" class="form-control" placeholder="Last Name" />
+					</div>
+
+					<div class="col-md-3">
+						<input type ="number" ng-model ="number" class="form-control" maxlength="3" placeholder="Number" />
+					</div>
+
+				</div>
+				<br />
+
+				<button class = "btn btn-primary" ng-click ="add()">
+					+ Add Row
+				</button>
+				<button class = "btn btn-warning" ng-click ="update()">
+					Update
+				</button>
+				<button class ="btn btn-danger">
+					Delete Row
+				</button>
+
+				<div id="donut">
+					<nvd3-pie-chart
+					data="circleData"
+					id="donutCirc"
+					showLabels="true"
+					x="xFunc()"
+					y="yFunc()"
+					donut="true"
+					width="{{ width }}"
+					donutRatio=".45"
+					donutLabelsOutside="true"
+					>
+						<svg height="320" width="100%"></svg>
+					</nvd3-pie-chart>
+				</div>
+
+			</div>
+
+			<footer>
+				<p>
+					&copy; Copyright  by Sam
+				</p>
+			</footer>
+		</div>
+
+		
+		<script src="js/angular-route.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
